@@ -4,22 +4,24 @@ BootCamp followed : https://www.youtube.com/watch?v=hDKCxebp88A
 
 Topic covered 🎯
 </br>
-&nbsp; ->  Linear Regression and Gradient Descent 📈
+&nbsp;&nbsp; ->  Linear Regression and Gradient Descent 📈
 </br>
-&nbsp; ->  Logistic Regression for Classification 🤷‍♂️
+&nbsp;&nbsp; ->  Logistic Regression for Classification 🤷‍♂️
 </br>
-    ->  Decision Trees and Random Forests      🌳
+&nbsp;&nbsp; ->  Decision Trees and Random Forests      🌳
+</br>
 </br>
 To be covered ⌛
 </br>
-    -> Gradient Boosting Machines with XGBoost
+&nbsp;&nbsp; -> Gradient Boosting Machines with XGBoost
  </br>
-    -> Unsupervised Learning using Scikit-Learn
+&nbsp;&nbsp; -> Unsupervised Learning using Scikit-Learn
 </br>
-    -> Machine Learning Project from Scratch
+&nbsp;&nbsp; -> Machine Learning Project from Scratch
 </br>
-    -> Deploying a Machine Learning Project with Flask
+&nbsp;&nbsp; -> Deploying a Machine Learning Project with Flask
 </br>
+
 
 
 
