@@ -4,9 +4,9 @@ BootCamp followed : https://www.youtube.com/watch?v=hDKCxebp88A
 
 Topic covered 🎯
 </br>
-    ->  Linear Regression and Gradient Descent 📈
+&nbsp; ->  Linear Regression and Gradient Descent 📈
 </br>
-    ->  Logistic Regression for Classification 🤷‍♂️
+&nbsp; ->  Logistic Regression for Classification 🤷‍♂️
 </br>
     ->  Decision Trees and Random Forests      🌳
 </br>
@@ -20,5 +20,6 @@ To be covered ⌛
 </br>
     -> Deploying a Machine Learning Project with Flask
 </br>
+
 
 
