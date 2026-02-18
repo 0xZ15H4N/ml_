@@ -1,6 +1,7 @@
 ﻿Documenting my ml journey 
 
 BootCamp followed : https://www.youtube.com/watch?v=hDKCxebp88A
+For Unsupervised learning part : https://www.youtube.com/watch?v=Aa4MACKaDC0
 
 Topic covered 🎯
 </br>
@@ -12,9 +13,8 @@ Topic covered 🎯
 </br>
 &nbsp;&nbsp; -> Gradient Boosting Machines with XGBoost
 </br>
-To be covered ⌛
-</br>
 &nbsp;&nbsp; -> Unsupervised Learning using Scikit-Learn
+To be covered ⌛
 </br>
 &nbsp;&nbsp; -> Machine Learning Project from Scratch
 </br>
