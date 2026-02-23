@@ -4,3 +4,4 @@ joblib
 flask-cors
 pandas
 numpy
+xgboost
