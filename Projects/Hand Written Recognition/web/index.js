@@ -14,7 +14,6 @@ for (let i = 0; i < 784; i++) {
     pixel.id = `pixel_${i}`;
     const label = document.createElement("label")
     label.htmlFor="agree"
-    label.textContent = "I agree";
 
     // Mouse drag painting
     pixel.addEventListener("mousedown", () => {
