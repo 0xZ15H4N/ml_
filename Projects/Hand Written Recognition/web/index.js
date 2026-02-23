@@ -47,7 +47,7 @@ function grid_mapper() {
 // Send data to Flask backend
 async function request_result() {
     grid_mapper();
-    const url = "https://botchy-immoveably-le.ngrok-free.dev/guess";
+    const url = "https://ml-8q8k.onrender.com/guess";
 
     try {
         const response = await fetch(url, {

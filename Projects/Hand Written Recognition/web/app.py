@@ -19,6 +19,9 @@ def guess():
    result = model.predict(df)
    return jsonify({"prediction":int(result[0])})
 
+@app.route("/", methods=["GET"])
+def landing():
+    return "<h1>Helloworld</h1>"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0",debug=True)
