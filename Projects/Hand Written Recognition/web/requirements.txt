@@ -2,3 +2,5 @@ flask
 requests
 joblib
 flask-cors
+pandas
+numpy
