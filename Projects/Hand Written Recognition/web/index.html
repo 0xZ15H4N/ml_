@@ -40,6 +40,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  overflow: hidden;
 }
 .loading-box{
     border:0.5px solid #000000;
@@ -84,9 +85,27 @@ body {
 </div>
 
 <script>
-const BACKEND_URL =  "https://ml-8q8k.onrender.com/health";
+const BACKEND_URL =  "http://localhost:5000/health"//"https://ml-8q8k.onrender.com/health";
 const MAX_WAIT_TIME = 60000; // 20 sec safety timeout
 const RETRY_DELAY = 1000;
+const bar = document.querySelector(".loading-bar");
+
+async function fetchWithTimeout(url, timeout = 2000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    const response = await fetch(url, {
+      cache: "no-store",
+      signal: controller.signal
+    });
+    clearTimeout(id);
+    return response;
+  } catch (err) {
+    clearTimeout(id);
+    throw err;
+  }
+}
 
 async function waitForBackend() {
   const startTime = Date.now();
@@ -94,10 +113,9 @@ async function waitForBackend() {
   while (Date.now() - startTime < MAX_WAIT_TIME) {
     const box = document.createElement("div");
     box.className ="loading-box";
-    const bar = document.querySelector(".loading-bar");
     bar.appendChild(box);
     try {
-      const response = await fetch(BACKEND_URL, { cache: "no-store" });
+      const response = await fetchWithTimeout(BACKEND_URL, 2000);
       if (response.ok) {
         showContent();
         setTimeout(()=>{window.location.href= "home.html"},1000)
