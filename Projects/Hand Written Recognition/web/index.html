@@ -33,6 +33,21 @@ body {
   animation: spin 0.8s linear infinite;
 }
 
+.loading-bar{
+  border:1px solid #00ff88;
+  width:500px;
+  height:20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.loading-box{
+    border:0.5px solid #000000;
+    background-color:#00ff88;
+    width:15px;
+    height: 19px;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -41,6 +56,8 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+
 
 .content {
   display: none;
@@ -58,6 +75,8 @@ body {
 <div id="loader" class="loader">
   <div class="spinner"></div>
   <p style="margin-top:15px;">Waking up server...</p>
+  <div class="loading-bar"></div>
+  <p>Waiting Time 10-15sec</p>
 </div>
 
 <div id="content" class="content">
@@ -65,14 +84,18 @@ body {
 </div>
 
 <script>
-const BACKEND_URL = "https://ml-8q8k.onrender.com/health";
-const MAX_WAIT_TIME = 20000; // 60 sec safety timeout
-const RETRY_DELAY = 2000;
+const BACKEND_URL = "http://localhost:5000/health" // "https://ml-8q8k.onrender.com/health";
+const MAX_WAIT_TIME = 60000; // 20 sec safety timeout
+const RETRY_DELAY = 1000;
 
 async function waitForBackend() {
   const startTime = Date.now();
 
   while (Date.now() - startTime < MAX_WAIT_TIME) {
+    const box = document.createElement("div");
+    box.className ="loading-box";
+    const bar = document.querySelector(".loading-bar");
+    bar.appendChild(box);
     try {
       const response = await fetch(BACKEND_URL, { cache: "no-store" });
       if (response.ok) {
