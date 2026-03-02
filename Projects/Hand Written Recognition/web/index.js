@@ -1,54 +1,90 @@
-// Grab the container div
-const ParentDiv = document.querySelector(".container");
-let isMouseDown = false;
 
-// Track mouse up globally
-document.addEventListener("mouseup", () => {
-    isMouseDown = false;
-});
+let grid = [];
+let rows = 28;
+let cols = 28;
+let cellSize = 15;
 
-// Create a 28x28 checkbox grid (784 inputs)
-for (let i = 0; i < 784; i++) {
-    const pixel = document.createElement("input");
-    pixel.type = "checkbox";
-    pixel.id = `pixel_${i}`;
-    const label = document.createElement("label")
-    label.htmlFor="agree"
+function setup() {
+  let canvas = createCanvas(cols * cellSize, rows * cellSize);
+  canvas.parent("canvas-container");
 
-    // Mouse drag painting
-    pixel.addEventListener("mousedown", () => {
-        isMouseDown = true;
-        pixel.checked = true;
-    });
-
-    pixel.addEventListener("mouseover", () => {
-        if (isMouseDown) {
-            pixel.checked = true;
-        }
-    });
-
-    ParentDiv.appendChild(pixel);
-    document.body.appendChild(label);
-}
-
-// Object to store checkbox states
-let result = {};
-
-// Map grid checkboxes to result object
-function grid_mapper() {
-    result = {};
-    const pixels = ParentDiv.children;
-    for (let i = 0; i < pixels.length; i++) {
-        const pixel = pixels[i];
-        result[pixel.id] = pixel.checked ? 1 : 0;
+  for (let i = 0; i < rows; i++) {
+    grid[i] = [];
+    for (let j = 0; j < cols; j++) {
+      grid[i][j] = 0;
     }
+  }
 }
 
-// Send data to Flask backend
-async function request_result() {
-    grid_mapper();
-    const url = "https://ml-8q8k.onrender.com/guess";
+function draw() {
+  background(0);
 
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      fill(grid[i][j]);
+      stroke(40);
+      rect(j * cellSize, i * cellSize, cellSize, cellSize);
+    }
+  }
+}
+
+function mouseDragged() {
+  let col = floor(mouseX / cellSize);
+  let row = floor(mouseY / cellSize);
+
+  if (row >= 0 && row < rows && col >= 0 && col < cols) {
+    drawBrush(row, col, 60);
+  }
+}
+
+function mousePressed() {
+  if (mouseButton === RIGHT) {
+    let col = floor(mouseX / cellSize);
+    let row = floor(mouseY / cellSize);
+    if (row >= 0 && row < rows && col >= 0 && col < cols) {
+      grid[row][col] = 0;
+    }
+  }
+}
+
+function drawBrush(row, col, strength) {
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      let r = row + i;
+      let c = col + j;
+      if (r >= 0 && r < rows && c >= 0 && c < cols) {
+        grid[r][c] += strength - (abs(i) + abs(j)) * 20;
+        grid[r][c] = constrain(grid[r][c], 0, 255);
+      }
+    }
+  }
+}
+
+function clearGrid() {
+  for (let i = 0; i < rows; i++)
+    for (let j = 0; j < cols; j++)
+      grid[i][j] = 0;
+   document.getElementById("Result").innerText = "?";
+}
+
+function getLabeledInput() {
+  let obj = {};
+  let index = 0;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      obj["pixel_" + index] = grid[i][j] / 255;  // normalized
+      index++;
+    }
+  }
+
+  return obj;
+}
+
+async function request_result() {
+    const url ="https://ml-8q8k.onrender.com/guess";
+    const result = getLabeledInput();
+    console.log(result)
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -57,19 +93,12 @@ async function request_result() {
         });
 
         const data = await response.json();
-        document.getElementById("result").innerText = data.prediction;
+        document.getElementById("Result").innerText = data.prediction;
+        console.log(data.prediction);
 
     } catch (error) {
         console.error("Error fetching prediction:", error);
     }
 }
 
-function Clear_Grid(){
-    const pixels = ParentDiv.children;
-     for (let i = 0; i < pixels.length; i++) {
-        const pixel = pixels[i];
-        pixel.checked = false;
-        document.getElementById("result").innerText = "?";
-
-    }
-}
+document.oncontextmenu = () => false;

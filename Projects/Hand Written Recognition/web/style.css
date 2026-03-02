@@ -1,66 +1,53 @@
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-}
+    body {
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    canvas {
+      border: 2px solid #333;
+      image-rendering: pixelated;
+    }
+    #getResult{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #Result{
+      width:100px;
+      height:100px;
+      border:1px solid black;
+    }
 
-#Parent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
+    /* Button styling */
+    button {
+      background: #3517c8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(28, 15px);
-  grid-template-rows: repeat(28, 15px);
-  gap: 1px;
-}
+    button:hover {
+      opacity: 0.9;
+    }
 
-/* Checkbox grid */
-.container input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: black; /* Makes checked box black */
-}
-
-/* Prediction section */
-#Prediction {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-#result {
-  border: 1px dotted black;
-  width: 100px;
-  height: 100px;
-  color: red;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
-
-/* Button styling */
-.btn {
-  background: #3517c8;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
+    #Result{
+      display: flex;
+      font-size: xx-large;
+      color:red;
+      align-items: center;
+      justify-content: center;
+    }
