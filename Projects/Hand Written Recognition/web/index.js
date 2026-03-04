@@ -82,7 +82,7 @@ function getLabeledInput() {
 }
 
 async function request_result() {
-    const url ="http://localhost:5000/guess"  //"https://ml-8q8k.onrender.com/guess";
+    const url ="https://ml-8q8k.onrender.com/guess";
     const result = getLabeledInput();
     console.log(result)
     try {
