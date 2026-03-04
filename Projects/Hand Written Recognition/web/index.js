@@ -82,7 +82,7 @@ function getLabeledInput() {
 }
 
 async function request_result() {
-    const url ="https://ml-8q8k.onrender.com/guess";
+    const url ="http://localhost:5000/guess"  //"https://ml-8q8k.onrender.com/guess";
     const result = getLabeledInput();
     console.log(result)
     try {
@@ -102,3 +102,55 @@ async function request_result() {
 }
 
 document.oncontextmenu = () => false;
+
+
+
+const BACKEND_URL =  'http://localhost:5000/health' //"https://ml-8q8k.onrender.com/health";
+const MAX_WAIT_TIME = 60000; // 20 sec safety timeout
+const RETRY_DELAY = 1000;
+
+
+async function fetchWithTimeout(url, timeout = 2000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    const response = await fetch(url, {
+      cache: "no-store",
+      signal: controller.signal
+    });
+    clearTimeout(id);
+    return response;
+  } catch (err) {
+    clearTimeout(id);
+    throw err;
+  }
+}
+
+async function waitForBackend() {
+  const startTime = Date.now();
+
+  while (true) {
+    try {
+      const response = await fetchWithTimeout(BACKEND_URL, 2000);
+      if (response.ok) {
+
+        const message = document.getElementById("message")
+        message.style.color="#00ff88"
+        message.innerText= "STATUS: LIVE"
+        const spinner = document.querySelector(".spinner");
+        console.log(spinner)
+        spinner.classList.remove("animate");
+        spinner.style.borderTop="none"
+        spinner.style.border="4px solid #00ff88";
+        return;
+      }
+    } catch (_) {}
+
+    await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+  }
+}
+
+
+
+waitForBackend();
