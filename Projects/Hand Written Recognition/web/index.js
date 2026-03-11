@@ -105,7 +105,7 @@ document.oncontextmenu = () => false;
 
 
 
-const BACKEND_URL = "https://ml-8q8k.onrend`er.com/health";
+const BACKEND_URL = "https://ml-8q8k.onrender.com/health";
 
 async function fetchWithTimeout(url, timeout = 2000) {
   const controller = new AbortController();
