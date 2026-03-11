@@ -105,10 +105,7 @@ document.oncontextmenu = () => false;
 
 
 
-const BACKEND_URL = "https://ml-8q8k.onrender.com/health";
-const MAX_WAIT_TIME = 60000; // 20 sec safety timeout
-const RETRY_DELAY = 1000;
-
+const BACKEND_URL = "https://ml-8q8k.onrend`er.com/health";
 
 async function fetchWithTimeout(url, timeout = 2000) {
   const controller = new AbortController();
@@ -137,9 +134,8 @@ async function waitForBackend() {
 
         const message = document.getElementById("message")
         message.style.color="#00ff88"
-        message.innerText= "STATUS: LIVE"
+        message.innerText= "BACKEND : LIVE"
         const spinner = document.querySelector(".spinner");
-        console.log(spinner)
         spinner.classList.remove("animate");
         spinner.style.borderTop="none"
         spinner.style.border="4px solid #00ff88";
