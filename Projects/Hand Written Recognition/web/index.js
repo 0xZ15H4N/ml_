@@ -143,7 +143,7 @@ async function waitForBackend() {
       }
     } catch (_) {}
 
-    await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+    await new Promise(resolve => setTimeout(resolve, 2000));
   }
 }
 
