@@ -3,6 +3,8 @@
 BootCamp followed : https://www.youtube.com/watch?v=hDKCxebp88A
 </br>
 For Unsupervised learning part : https://www.youtube.com/watch?v=Aa4MACKaDC0
+</br>
+For Deep Learning part : https://www.youtube.com/@SheryiansAI
 
 Topic covered 🎯
 </br>
