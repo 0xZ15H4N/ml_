@@ -1,4 +1,4 @@
-﻿Documenting my ml journey 
+﻿Documenting my ml/dl journey 
 
 BootCamp followed : https://www.youtube.com/watch?v=hDKCxebp88A
 </br>
