@@ -20,7 +20,11 @@ To be covered ⌛
 </br>
 &nbsp;&nbsp; -> Deploying a Machine Learning Project with Flask
 </br>
-
-
+&nbsp;&nbsp; ->  ANN 📈
+</br>
+&nbsp;&nbsp; ->  CNN 📈
+</br>
+&nbsp;&nbsp; ->  RNN 📈
+</br>
 
 
