@@ -5,4 +5,4 @@ flask-cors
 pandas
 numpy
 xgboost
-ternsorflow
+tensorflow
